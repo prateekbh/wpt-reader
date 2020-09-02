@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+.search {
+  display: flex;
+  align-items: center;
+}
+.textbox {
+  flex: 1;
+}

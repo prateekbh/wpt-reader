@@ -1,0 +1,20 @@
+@import "../node_modules/@material/textfield/dist/mdc.textfield.css";
+@import "../node_modules/@material/button/dist/mdc.button.css";
+@import "../node_modules/@material/linear-progress/dist/mdc.linear-progress.css";
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
