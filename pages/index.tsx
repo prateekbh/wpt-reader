@@ -12,12 +12,12 @@ export default function Home() {
       </Head>
       <div>
         <h1>Web page test results reader.</h1>
-        <div className={styles.search}>
-         <form>
-          <TextField type="url" fullwidth placeholder="Enter WPT url" className={styles.textbox} />
-          <Button type="submit">Read</Button>
-         </form>
-        </div>
+        <form>
+          <div className={styles.search}>
+            <TextField type="url" fullwidth placeholder="Enter WPT url" className={styles.textbox} />
+            <Button type="submit">Read</Button>
+          </div>
+        </form>
       </div>
     </div>
   )
