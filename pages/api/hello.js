@@ -3,7 +3,6 @@ const fetch = require('isomorphic-fetch');
 
 function loadFile(file) {
   const path = `${__dirname}/${file}`;
-  console.log(`---Reading file ${path}---`)
   const JSON = require(path)
   return JSON;
 }
@@ -27,7 +26,6 @@ const median = arr => {
 };
 
 function read(json) {
-  console.log(`Results for ${json.data.url}.`)
   const fcp = [];
   const lcp = [];
   const tbt = [];
@@ -89,34 +87,6 @@ function read(json) {
       median: median(ht)
     },
   };
-  // console.log('First Contentful paint');
-  // console.log(fcp);
-  // console.log(`Mean: ${mean(fcp)}, Median: ${median(fcp)}`);
-  // console.log('\n');
-  // console.log('Largest Contentful paint');
-  // console.log(lcp);
-  // console.log(`Mean: ${mean(lcp)}, Median: ${median(lcp)}`);
-  // console.log('\n');
-  // console.log('Total blocking time');
-  // console.log(tbt);
-  // console.log(`Mean: ${mean(tbt)}, Median: ${median(tbt)}`);
-  // console.log('\n');
-  // console.log('Time to first byte');
-  // console.log(ttfb);
-  // console.log(`Mean: ${mean(ttfb)}, Median: ${median(ttfb)}`);
-  // console.log('\n');
-  // console.log('Time to interactivity');
-  // console.log(tti);
-  // console.log(`Mean: ${mean(tti)}, Median: ${median(tti)}`);
-  // console.log('\n');
-  // console.log('Time Before hydration');
-  // console.log(bh);
-  // console.log(`Mean: ${mean(bh)}, Median: ${median(bh)}`);
-  // console.log('\n');
-  // console.log('Hydration time');
-  // console.log(ht);
-  // console.log(`Mean: ${mean(ht)}, Median: ${median(ht)}`);
-  // console.log('\n');
 }
 
 
