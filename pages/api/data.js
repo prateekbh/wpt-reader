@@ -1,5 +1,12 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 const fetch = require('isomorphic-fetch');
+const FCP_KEY = 'chromeUserTiming.firstContentfulPaint';
+const LCP_KEY = 'chromeUserTiming.LargestContentfulPaint';
+const TTFB_KEY = 'TTFB';
+const TBT_KEY = 'TotalBlockingTime';
+const TTI_KEY = 'chromeUserTiming.InteractiveTime';
+const BH_KEY = 'userTimingMeasure.Next.js-before-hydration';
+const HT_KEY = 'userTimingMeasure.Next.js-hydration';
 
 function loadFile(file) {
   const path = `${__dirname}/${file}`;
@@ -35,13 +42,13 @@ function read(json) {
   const ttfb = [];
   for(var runIndex in json.data.runs) {
     const run = json.data.runs[runIndex]
-    const fcpNumber = run.firstView['chromeUserTiming.firstContentfulPaint']
-    const lcpNumber = run.firstView['chromeUserTiming.LargestContentfulPaint']
-    const ttfbNumber = run.firstView['TTFB']
-    const tbtNumber = run.firstView['TotalBlockingTime']
-    const ttiNumber = run.firstView['chromeUserTiming.InteractiveTime']
-    const bhNumber = run.firstView['userTimingMeasure.Next.js-before-hydration'];
-    const htNumber = run.firstView['userTimingMeasure.Next.js-hydration']
+    const fcpNumber = run.firstView[FCP_KEY]
+    const lcpNumber = run.firstView[LCP_KEY]
+    const ttfbNumber = run.firstView[TTFB_KEY]
+    const tbtNumber = run.firstView[TBT_KEY]
+    const ttiNumber = run.firstView[TTI_KEY]
+    const bhNumber = run.firstView[BH_KEY];
+    const htNumber = run.firstView[HT_KEY]
     fcpNumber && fcp.push(fcpNumber);
     lcpNumber && lcp.push(lcpNumber);
     ttfbNumber && ttfb.push(ttfbNumber);
@@ -51,40 +58,50 @@ function read(json) {
     htNumber && ht.push(htNumber);
   }
   return {
+    meta : {
+      runs: json.data.testRuns
+    },
     fcp: {
       data: fcp,
       mean: mean(fcp),
-      median: median(fcp)
+      median: median(fcp),
+      medianRun: json.data.median.firstView[FCP_KEY]
     },
     lcp: {
       data: lcp,
       mean: mean(lcp),
-      median: median(lcp)
+      median: median(lcp),
+      medianRun: json.data.median.firstView[LCP_KEY]
     },
     tbt: {
       data: tbt,
       mean: mean(tbt),
-      median: median(tbt)
+      median: median(tbt),
+      medianRun: json.data.median.firstView[TBT_KEY]
     },
     ttfb: {
       data: ttfb,
       mean: mean(ttfb),
-      median: median(ttfb)
+      median: median(ttfb),
+      medianRun: json.data.median.firstView[TTFB_KEY]
     },
     tti: {
       data: tti,
       mean: mean(tti),
-      median: median(tti)
+      median: median(tti),
+      medianRun: json.data.median.firstView[TTI_KEY]
     },
     bh: {
       data: bh,
       mean: mean(bh),
-      median: median(bh)
+      median: median(bh),
+      medianRun: json.data.median.firstView[BH_KEY]
     },
     ht: {
       data: ht,
       mean: mean(ht),
-      median: median(ht)
+      median: median(ht),
+      medianRun: json.data.median.firstView[HT_KEY]
     },
   };
 }
