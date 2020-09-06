@@ -41,21 +41,21 @@ function read(json) {
   const ht = [];
   const ttfb = [];
   for(var runIndex in json.data.runs) {
-    const run = json.data.runs[runIndex]
-    const fcpNumber = run.firstView[FCP_KEY]
-    const lcpNumber = run.firstView[LCP_KEY]
-    const ttfbNumber = run.firstView[TTFB_KEY]
-    const tbtNumber = run.firstView[TBT_KEY]
-    const ttiNumber = run.firstView[TTI_KEY]
+    const run = json.data.runs[runIndex];
+    const fcpNumber = run.firstView[FCP_KEY];
+    const lcpNumber = run.firstView[LCP_KEY];
+    const ttfbNumber = run.firstView[TTFB_KEY];
+    const tbtNumber = run.firstView[TBT_KEY];
+    const ttiNumber = run.firstView[TTI_KEY];
     const bhNumber = run.firstView[BH_KEY];
-    const htNumber = run.firstView[HT_KEY]
-    fcpNumber && fcp.push(fcpNumber);
-    lcpNumber && lcp.push(lcpNumber);
-    ttfbNumber && ttfb.push(ttfbNumber);
-    tbtNumber && tbt.push(tbtNumber);
-    ttiNumber && tti.push(ttiNumber);
-    bh && bh.push(bhNumber);
-    htNumber && ht.push(htNumber);
+    const htNumber = run.firstView[HT_KEY];
+    (fcpNumber !== undefined) && fcp.push(fcpNumber);
+    (lcpNumber !== undefined) && lcp.push(lcpNumber);
+    (ttfbNumber !== undefined) && ttfb.push(ttfbNumber);
+    (tbtNumber !== undefined) && tbt.push(tbtNumber);
+    (ttiNumber !== undefined) && tti.push(ttiNumber);
+    (bh !== undefined) && bh.push(bhNumber);
+    (htNumber !== undefined) && ht.push(htNumber);
   }
   return {
     meta : {
