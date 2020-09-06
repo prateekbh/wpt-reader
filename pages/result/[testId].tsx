@@ -4,13 +4,14 @@ import {LinearProgress} from '@rmwc/linear-progress';
 import styles from '../../styles/Result.module.css'
 
 const MAPPING = {
-  FCP: 'First contentful paint',
-  LCP: 'Largest contentful paint',
-  TBT: 'Total blocking time',
-  TTFB: 'Time to first byte',
-  TTI: 'Titme to interactivity',
-  BH: 'Time before hydration',
-  HT: 'Hydration time',
+  FCP: 'First contentful paint (ms)',
+  LCP: 'Largest contentful paint (ms)',
+  CLS: 'Cumulative layout shift',
+  TBT: 'Total blocking time (ms)',
+  TTFB: 'Time to first byte (ms)',
+  TTI: 'Titme to interactivity (ms)',
+  BH: 'Time before hydration (ms)',
+  HT: 'Hydration time (ms)',
 }
 
 function round(value) {
@@ -55,22 +56,22 @@ export default function Results(props) {
               [...new Array(runs)].map((empty, index)=> (
                 <tr>
                   <td></td>
-                  {KEYS.map(key => <td>{round(performanceData[key].data[index])} ms</td>)}
+                  {KEYS.map(key => <td>{round(performanceData[key].data[index])}</td>)}
                 </tr>
 
               ))
             }
             <tr>
               <td className={styles.highlight}>Mean:</td>
-              {KEYS.map(key => <td>{round(performanceData[key].mean)} ms</td>)}
+              {KEYS.map(key => <td>{round(performanceData[key].mean)}</td>)}
             </tr>
             <tr>
               <td className={styles.highlight}>Median:</td>
-              {KEYS.map(key => <td>{round(performanceData[key].median)} ms</td>)}
+              {KEYS.map(key => <td>{round(performanceData[key].median)}</td>)}
             </tr>
             <tr>
               <td className={styles.highlight}>Median run:</td>
-              {KEYS.map(key => <td>{round(performanceData[key].medianRun)} ms</td>)}
+              {KEYS.map(key => <td>{round(performanceData[key].medianRun)}</td>)}
             </tr>
           </tbody>
         </table>

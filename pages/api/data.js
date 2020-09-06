@@ -2,6 +2,7 @@
 const fetch = require('isomorphic-fetch');
 const FCP_KEY = 'chromeUserTiming.firstContentfulPaint';
 const LCP_KEY = 'chromeUserTiming.LargestContentfulPaint';
+const CLS_KEY = 'chromeUserTiming.CumulativeLayoutShift';
 const TTFB_KEY = 'TTFB';
 const TBT_KEY = 'TotalBlockingTime';
 const TTI_KEY = 'chromeUserTiming.InteractiveTime';
@@ -35,6 +36,7 @@ const median = arr => {
 function read(json) {
   const fcp = [];
   const lcp = [];
+  const cls = [];
   const tbt = [];
   const tti = [];
   const bh = [];
@@ -44,6 +46,7 @@ function read(json) {
     const run = json.data.runs[runIndex];
     const fcpNumber = run.firstView[FCP_KEY];
     const lcpNumber = run.firstView[LCP_KEY];
+    const clsNumber = run.firstView[CLS_KEY];
     const ttfbNumber = run.firstView[TTFB_KEY];
     const tbtNumber = run.firstView[TBT_KEY];
     const ttiNumber = run.firstView[TTI_KEY];
@@ -51,6 +54,7 @@ function read(json) {
     const htNumber = run.firstView[HT_KEY];
     (fcpNumber !== undefined) && fcp.push(fcpNumber);
     (lcpNumber !== undefined) && lcp.push(lcpNumber);
+    (clsNumber !== undefined) && cls.push(clsNumber);
     (ttfbNumber !== undefined) && ttfb.push(ttfbNumber);
     (tbtNumber !== undefined) && tbt.push(tbtNumber);
     (ttiNumber !== undefined) && tti.push(ttiNumber);
@@ -72,6 +76,12 @@ function read(json) {
       mean: mean(lcp),
       median: median(lcp),
       medianRun: json.data.median.firstView[LCP_KEY]
+    },
+    cls: {
+      data: cls,
+      mean: mean(cls),
+      median: median(cls),
+      medianRun: json.data.median.firstView[CLS_KEY]
     },
     tbt: {
       data: tbt,
