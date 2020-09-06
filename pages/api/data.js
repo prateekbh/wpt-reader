@@ -65,6 +65,12 @@ function read(json) {
     meta : {
       runs: json.data.testRuns
     },
+    ttfb: {
+      data: ttfb,
+      mean: mean(ttfb),
+      median: median(ttfb),
+      medianRun: json.data.median.firstView[TTFB_KEY]
+    },
     fcp: {
       data: fcp,
       mean: mean(fcp),
@@ -88,12 +94,6 @@ function read(json) {
       mean: mean(tbt),
       median: median(tbt),
       medianRun: json.data.median.firstView[TBT_KEY]
-    },
-    ttfb: {
-      data: ttfb,
-      mean: mean(ttfb),
-      median: median(ttfb),
-      medianRun: json.data.median.firstView[TTFB_KEY]
     },
     tti: {
       data: tti,
