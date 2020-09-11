@@ -63,7 +63,9 @@ function read(json) {
   }
   return {
     meta : {
-      runs: json.data.testRuns
+      runs: json.data.testRuns,
+      url: json.data.url,
+      from: json.data.from,
     },
     ttfb: {
       data: ttfb,

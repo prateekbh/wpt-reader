@@ -43,7 +43,8 @@ export default function Results(props) {
     const runs = meta.runs;
     return (
       <div className={styles.page}>
-        <h2>Results for <a className={styles.link} href={`https://www.webpagetest.org/result/${testId}/`}>`https://www.webpagetest.org/result/{testId}/`</a></h2>
+        <h2>Webpage test link: <a className={styles.link} href={`https://www.webpagetest.org/result/${testId}/`}>`https://www.webpagetest.org/result/{testId}/`</a></h2>
+        <h3>URL: <a className={styles.link} href={meta.url}>{meta.url}</a></h3>
         <table className={styles.table}>
           <thead>
             <tr className={styles.tableHead}>
